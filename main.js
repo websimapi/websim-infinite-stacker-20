@@ -155,8 +155,11 @@ async function autoSubmitScore(replayBlob) {
             return;
         }
         
-        ui.setSubmitStatus('Saving replay...', '#ff9800');
-        const replayUrl = await blobToDataUrl(replayBlob);
+        ui.setSubmitStatus('Uploading replay...', '#ff9800');
+        const replayFile = new File([replayBlob], `replay-${currentUser.username}-${Date.now()}.webm`, { type: replayBlob.type });
+        const replayUrl = await window.websim.upload(replayFile);
+        
+        ui.setSubmitStatus('Saving score...', '#ff9800');
 
         if (lowestScoreRecord && userScores.length >= 3) {
             // Update the lowest score
