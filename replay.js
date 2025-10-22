@@ -36,7 +36,7 @@ export class ReplayRecorder {
 
             this.mediaRecorder = new MediaRecorder(stream, {
                 mimeType: supportedMimeType,
-                videoBitsPerSecond: isFirefox ? undefined : 5000000,
+                videoBitsPerSecond: isFirefox ? undefined : 1500000,
             });
 
             this.mediaRecorder.ondataavailable = (e) => {
